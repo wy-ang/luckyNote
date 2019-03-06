@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view>
+  <i-card wx:for="{{books}}" wx:key="" title="{{item.work_name}}" extra="{{item.creation_time}}" class="margin" full>
+    <view slot="content">{{item.describe}}</view>
+    <view slot="footer">{{item.creator}}</view>
+  </i-card>
+</view>
