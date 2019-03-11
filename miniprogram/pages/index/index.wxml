@@ -9,23 +9,27 @@
         </block>
       </view>
     </view> -->
-    <button bindtap="showModal" data-target="viewModal" class='cu-btn icon'>
-      <text class='icon-list block'></text>
-    </button>
+    <view class='cu-bar bg-white'>
+      <view class='action'>
+        <button bindtap="showModal" data-target="viewModal" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn bg-white'>
+          <text class='icon-sort lg block'></text>
+        </button>
+      </view>
+      <view class='content text-bold'>
+        海蓝
+      </view>
+    </view>
   </view>
   <view wx:for="{{10}}" wx:key wx:if="{{index==TabCur}}" class='padding margin text-center'>
-    <view class='text-bold text-xxl margin-xl'>Tab{{index}}</view>
-    <view class='text-xl margin-xl'>点击头像打开抽屉</view>
-    <navigator class='cu-btn bg-green lg block shadow radius margin-xl' open-type="navigateBack" delta="1" hover-class="none">
-      <text class='icon-back'> </text> 返回上一页
-    </navigator>
+    <text>内容</text>
+    
   </view>
 </view>
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap='hideModal'>
   <text class='icon-pullright'></text>
 </view>
 <view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+  <view class="cu-list menu">
     <view class="cu-item arrow" wx:for="{{docs}}" wx:key="index">
       <view class='content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
         <text class='text-grey'>{{item.title}}</text>

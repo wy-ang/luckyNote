@@ -15,6 +15,7 @@ Page({
   },
   // 获取用户信息
   getUserInfo: function (e) {
+    console.log(e);
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -32,14 +33,6 @@ Page({
       modalName: null
     })
   },
-  tabSelect(e) {
-    console.log(e);
-    this.setData({
-      TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
-    })
-  },
-
   onLoad: function() {
     //读取数据库
     const that = this;

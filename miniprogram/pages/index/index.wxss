@@ -103,3 +103,11 @@ page {
 .DrawerPage .cu-bar.tabbar .action {
   flex: initial;
 }
+
+.cu-bar .action:first-child{
+  margin: 0
+}
+
+.action .cu-btn{
+  font-size: 40rpx;
+}
