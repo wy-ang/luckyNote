@@ -1,28 +1,37 @@
 <!--index.wxml-->
-<!-- <view>
-  <i-card wx:for="{{books}}" wx:key="" title="{{item.work_name}}" extra="{{item.creation_time}}" class="margin" full>
-    <view slot="content">{{item.describe}}</view>
-    <view slot="footer">{{item.creator}}</view>
-  </i-card>
-</view> -->
-<view class='box' id='box'>
-  <view class="cu-bar bg-blue custum">
-    <view class='action'>
-      <i-button bind:click="toggleDrawer" size="small" inline="true" type="primary" long>
-        <i-icon type="other" size="28" color="#FFF" />
-      </i-button>
-    </view>
-    <view class='content text-bold'>
-      海蓝
+<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-custom" style="height:{{CustomBar}}px;">
+    <!-- <view class="cu-bar tabbar bg-black fixed" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+      <view class="action text-center" style='width: 100rpx'>
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn icon-my icon bg-green shadow'> </button>
+        <block wx:else>
+          <view class="cu-avatar round" style="background-image:url({{userInfo.avatarUrl}})" bindtap="showModal" data-target="viewModal"></view>
+        </block>
+      </view>
+    </view> -->
+    <button bindtap="showModal" data-target="viewModal" class='cu-btn icon'>
+      <text class='icon-list block'></text>
+    </button>
+  </view>
+  <view wx:for="{{10}}" wx:key wx:if="{{index==TabCur}}" class='padding margin text-center'>
+    <view class='text-bold text-xxl margin-xl'>Tab{{index}}</view>
+    <view class='text-xl margin-xl'>点击头像打开抽屉</view>
+    <navigator class='cu-btn bg-green lg block shadow radius margin-xl' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'> </text> 返回上一页
+    </navigator>
+  </view>
+</view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap='hideModal'>
+  <text class='icon-pullright'></text>
+</view>
+<view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-item arrow" wx:for="{{docs}}" wx:key="index">
+      <view class='content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+        <text class='text-grey'>{{item.title}}</text>
+      </view>
     </view>
   </view>
-  <i-drawer mode="left" visible="{{showDrawer}}" bind:close="toggleDrawer">
-    <scroll-view scroll-y="true" style="height:{{scroll_height}}px">
-      <i-cell-group wx:for="{{docs}}" wx:key="index" i-class="scroll">
-          <i-cell title="{{item.title}}"></i-cell>
-      </i-cell-group>
-    </scroll-view>
-  </i-drawer>
 </view>
 <!-- <import src="../wxParse/wxParse.wxml" />
 <view>

@@ -4,48 +4,39 @@ var WxParse = require('../wxParse/wxParse.js');
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
-    current: 'homepage',
-    showDrawer: false,
-    scroll_height: 0,
-    docs: []
-
+    // 抽屉
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    TabCur: 1,
+    scrollLeft: 0,
   },
-  
-
-//抽屉
-  toggleDrawer() {
+  // 获取用户信息
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      showDrawer: !this.data.showDrawer
-    });
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
-
-  //添加
-  addBook({ detail }) {
+  // 抽屉
+  showModal(e) {
     this.setData({
-      current: detail.key
-    });
+      modalName: e.currentTarget.dataset.target
+    })
   },
-
-  //下拉刷新
-  onPullDownRefresh(){
-    console.log('下拉')
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
   },
-  //上拉触底
-  onReachBottom(){
-    console.log('上拉')
-  },
-
-  onShow: function () {
-    var query = wx.createSelectorQuery();
-    query.select('#box').boundingClientRect()
-    query.exec(function (res) {
-      //console.log(res);
-      console.log(res[0].height);
+  tabSelect(e) {
+    console.log(e);
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
 
@@ -53,8 +44,8 @@ Page({
     //读取数据库
     const that = this;
     const db = wx.cloud.database()
-    db.collection('react_doc').get().then(res => {
-      const list = res.data;
+    db.collection('react_doc_menu').get().then(res => {
+      const list = res.data[0].children;
       console.log(list);
       this.setData({
         docs: list
@@ -74,22 +65,7 @@ Page({
       return
     }
 
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    }),
+    
 
     wx.getSystemInfo({
       success: function(res) {
@@ -98,8 +74,6 @@ Page({
         })
       },
     })
-
-   
   },
 
   onGetUserInfo: function(e) {
