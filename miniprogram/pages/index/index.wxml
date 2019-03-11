@@ -1,7 +1,15 @@
 <!--index.wxml-->
-<view>
+<!-- <view>
   <i-card wx:for="{{books}}" wx:key="" title="{{item.work_name}}" extra="{{item.creation_time}}" class="margin" full>
     <view slot="content">{{item.describe}}</view>
     <view slot="footer">{{item.creator}}</view>
+  </i-card>
+</view> -->
+<view>
+  <i-card wx:for="{{docs}}" wx:key="" title="{{item.title}}" class="margin" full>
+    <view slot="content">
+      <import src="../wxParse/wxParse.wxml" />
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+    </view>
   </i-card>
 </view>

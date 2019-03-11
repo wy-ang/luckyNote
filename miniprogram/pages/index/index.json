@@ -7,6 +7,7 @@
     "i-tab-bar": "../../dist/tab-bar/index",
     "i-tab-bar-item": "../../dist/tab-bar-item/index",
     "i-tag": "../../dist/tag/index",
-    "i-card": "../../dist/card/index"
+    "i-card": "../../dist/card/index",
+    "i-icon": "../../dist/icon/index"
   }
 }

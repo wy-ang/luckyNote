@@ -1,5 +1,6 @@
 //index.js
 const app = getApp()
+var WxParse = require('../wxParse/wxParse.js');
 
 Page({
   data: {
@@ -9,7 +10,7 @@ Page({
     takeSession: false,
     requestResult: '',
     current: 'homepage',
-    books:[]
+    docs:[]
 
   },
 
@@ -34,12 +35,21 @@ Page({
   onLoad: function() {
     //读取数据库
     const db = wx.cloud.database()
-    db.collection('book').limit(10).get().then(res => {
-      // res.data 包含该记录的数据
+    db.collection('react').get().then(res => {
       this.setData({
-        books: res.data
+        docs: res.data
       })
+      for (let i = 0; i < res.data.length; i++){
+        WxParse.wxParse('article', 'html', res.data[i].content, this, 5);
+      }
     })
+
+    // db.collection('book').limit(10).get().then(res => {
+    //   // res.data 包含该记录的数据
+    //   this.setData({
+    //     books: res.data
+    //   })
+    // })
 
     if (!wx.cloud) {
       wx.redirectTo({
