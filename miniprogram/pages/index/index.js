@@ -10,10 +10,19 @@ Page({
     takeSession: false,
     requestResult: '',
     current: 'homepage',
-    docs:[]
+    showDrawer: false,
+    scroll_height: 0,
+    docs: []
 
   },
+  
 
+//抽屉
+  toggleDrawer() {
+    this.setData({
+      showDrawer: !this.data.showDrawer
+    });
+  },
 
   //添加
   addBook({ detail }) {
@@ -31,25 +40,32 @@ Page({
     console.log('上拉')
   },
 
+  onShow: function () {
+    var query = wx.createSelectorQuery();
+    query.select('#box').boundingClientRect()
+    query.exec(function (res) {
+      //console.log(res);
+      console.log(res[0].height);
+    })
+  },
 
   onLoad: function() {
     //读取数据库
+    const that = this;
     const db = wx.cloud.database()
-    db.collection('react').get().then(res => {
+    db.collection('react_doc').get().then(res => {
+      const list = res.data;
+      console.log(list);
       this.setData({
-        docs: res.data
+        docs: list
       })
-      for (let i = 0; i < res.data.length; i++){
-        WxParse.wxParse('article', 'html', res.data[i].content, this, 5);
-      }
+      // for (let i = 0; i < list.length; i++){
+      //   WxParse.wxParse('reply' + i, 'html', list[i].content, this);
+      //   if (i === list.length - 1) {
+      //     WxParse.wxParseTemArray("listArr", 'reply', list.length, this)
+      //   }
+      // }
     })
-
-    // db.collection('book').limit(10).get().then(res => {
-    //   // res.data 包含该记录的数据
-    //   this.setData({
-    //     books: res.data
-    //   })
-    // })
 
     if (!wx.cloud) {
       wx.redirectTo({
@@ -73,6 +89,14 @@ Page({
           })
         }
       }
+    }),
+
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          scroll_height: res.windowHeight - res.windowWidth / 750
+        })
+      },
     })
 
    

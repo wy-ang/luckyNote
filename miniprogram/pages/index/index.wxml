@@ -5,11 +5,28 @@
     <view slot="footer">{{item.creator}}</view>
   </i-card>
 </view> -->
-<view>
-  <i-card wx:for="{{docs}}" wx:key="" title="{{item.title}}" class="margin" full>
-    <view slot="content">
-      <import src="../wxParse/wxParse.wxml" />
-      <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+<view class='box' id='box'>
+  <view class="cu-bar bg-blue custum">
+    <view class='action'>
+      <i-button bind:click="toggleDrawer" size="small" inline="true" type="primary" long>
+        <i-icon type="other" size="28" color="#FFF" />
+      </i-button>
     </view>
-  </i-card>
+    <view class='content text-bold'>
+      海蓝
+    </view>
+  </view>
+  <i-drawer mode="left" visible="{{showDrawer}}" bind:close="toggleDrawer">
+    <scroll-view scroll-y="true" style="height:{{scroll_height}}px">
+      <i-cell-group wx:for="{{docs}}" wx:key="index" i-class="scroll">
+          <i-cell title="{{item.title}}"></i-cell>
+      </i-cell-group>
+    </scroll-view>
+  </i-drawer>
 </view>
+<!-- <import src="../wxParse/wxParse.wxml" />
+<view>
+  <block wx:for="{{listArr}}" wx:key="">
+    <template is="wxParse" data="{{wxParseData:item}}"/>
+  </block>
+</view> -->
