@@ -1,45 +1,19 @@
 <!--index.wxml-->
-<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
-  <view class="cu-custom" style="height:{{CustomBar}}px;">
-    <!-- <view class="cu-bar tabbar bg-black fixed" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-      <view class="action text-center" style='width: 100rpx'>
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn icon-my icon bg-green shadow'> </button>
-        <block wx:else>
-          <view class="cu-avatar round" style="background-image:url({{userInfo.avatarUrl}})" bindtap="showModal" data-target="viewModal"></view>
-        </block>
-      </view>
-    </view> -->
-    <view class='cu-bar bg-white'>
-      <view class='action'>
-        <button bindtap="showModal" data-target="viewModal" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn bg-white'>
-          <text class='icon-sort lg block'></text>
-        </button>
-      </view>
-      <view class='content text-bold'>
-        海蓝
+<view class="DrawerPage bg-yellow light">
+  <view class="note">
+    <view class="cu-bar search">
+      <view class="search-form radius">
+        <text class="icon-search"></text>
+        <input type="text" placeholder="搜索便签" confirm-type="search"></input>
       </view>
     </view>
-  </view>
-  <view wx:for="{{10}}" wx:key wx:if="{{index==TabCur}}" class='padding margin text-center'>
-    <text>内容</text>
-    
-  </view>
-</view>
-<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap='hideModal'>
-  <text class='icon-pullright'></text>
-</view>
-<view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
-  <view class="cu-list menu">
-    <view class="cu-item arrow" wx:for="{{docs}}" wx:key="index">
-      <view class='content' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
-        <text class='text-grey'>{{item.title}}</text>
+    <view class="grid col-1 grid-square bg-red light padding-sm radius add" bindtap="toAdd">
+      <text class='icon-add'></text> 新建便签
+    </view>
+    <view class="grid col-2 grid-square">
+      <view class='content bg-red light radius' wx:for="{{list}}" wx:key="index" bindtap="toAdd" data-id="{{item._id}}" data-content="{{item.content}}">
+        <text class='text-grey'>{{item.content}}</text>
       </view>
     </view>
   </view>
 </view>
-<!-- <import src="../wxParse/wxParse.wxml" />
-<view>
-  <block wx:for="{{listArr}}" wx:key="">
-    <template is="wxParse" data="{{wxParseData:item}}"/>
-  </block>
-</view> -->

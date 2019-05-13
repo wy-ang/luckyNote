@@ -1,0 +1,24 @@
+@import "../wxParse/wxParse.wxss";
+@import "../../colorui.wxss";
+@import "../../icon.wxss";
+
+.DrawerPage {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0vw;
+  background-color: #f1f1f1;
+  transition: all 0.6s;
+}
+.cu-form-group {
+  background: #fadbd9;
+}
+.cu-form-group textarea{
+  height: 100vh;
+  background: #fadbd9
+}
+.cu-btn {
+  background: transparent !important;
+  color:#e54d42;
+  font-size: 48rpx;
+}

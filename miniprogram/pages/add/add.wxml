@@ -1,0 +1,15 @@
+<!--add.wxml-->
+<view class="DrawerPage bg-red light">
+  <view class='form'>
+    <form bindsubmit='res'>
+      <view class="flex solid-bottom padding justify-end">
+        <button class='cu-btn right' bindtap="toList" data-type='{{type}}' data-id='{{id}}' form-type='submit'>
+          <text class='icon-check'></text>
+        </button>
+      </view>
+      <view class="cu-form-group">
+        <textarea maxlength="-1" name="content" value="{{content}}" placeholder="多行文本输入框"></textarea>
+      </view>
+    </form>
+  </view>
+</view>

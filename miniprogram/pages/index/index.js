@@ -3,18 +3,8 @@ const app = getApp()
 var WxParse = require('../wxParse/wxParse.js');
 
 Page({
-  data: {
-    // 抽屉
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    Custom: app.globalData.Custom,
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    TabCur: 1,
-    scrollLeft: 0,
-  },
   // 获取用户信息
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e);
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -22,26 +12,14 @@ Page({
       hasUserInfo: true
     })
   },
-  // 抽屉
-  showModal(e) {
-    this.setData({
-      modalName: e.currentTarget.dataset.target
-    })
-  },
-  hideModal(e) {
-    this.setData({
-      modalName: null
-    })
-  },
   onLoad: function() {
     //读取数据库
     const that = this;
     const db = wx.cloud.database()
-    db.collection('react_doc_menu').get().then(res => {
-      const list = res.data[0].children;
-      console.log(list);
+    db.collection('test').get().then(res => {
+      const list = res.data;
       this.setData({
-        docs: list
+        list: list
       })
       // for (let i = 0; i < list.length; i++){
       //   WxParse.wxParse('reply' + i, 'html', list[i].content, this);
@@ -57,8 +35,6 @@ Page({
       })
       return
     }
-
-    
 
     wx.getSystemInfo({
       success: function(res) {
@@ -77,33 +53,6 @@ Page({
         userInfo: e.detail.userInfo
       })
     }
-  },
-
-  //数据库添加信息
-  res: function (e) {
-    const db = wx.cloud.database()
-    db.collection('test').add({
-      data: {
-        username: e.detail.value.username
-      },
-      success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          username: e.detail.value.username
-        })
-        wx.showToast({
-          title: '新增记录成功',
-        })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '新增记录失败'
-        })
-        console.error('[数据库] [新增记录] 失败：', err)
-      }
-    })
   },
 
   onGetOpenid: function() {
@@ -128,20 +77,20 @@ Page({
   },
 
   // 上传图片
-  doUpload: function () {
+  doUpload: function() {
     // 选择图片
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
 
         wx.showLoading({
           title: '上传中',
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
@@ -153,7 +102,7 @@ Page({
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
-            
+
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })
@@ -176,5 +125,12 @@ Page({
       }
     })
   },
-
+  toAdd(event) {
+    const id = event.currentTarget.dataset.id;
+    const content = event.currentTarget.dataset.content;
+    const type = id ? 'edit' : null;
+    wx.navigateTo({
+      url: '../add/add?content=' + content + '&id=' + id + '&type=' + type
+    })
+  }
 })
