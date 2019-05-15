@@ -1,9 +1,9 @@
 <!--add.wxml-->
-<view class="DrawerPage bg-red light">
+<view class="DrawerPage bg-yellow light">
   <view class='form'>
     <form bindsubmit='res'>
       <view class="flex solid-bottom padding justify-end">
-        <button class='cu-btn right' bindtap="toList" data-type='{{type}}' data-id='{{id}}' form-type='submit'>
+        <button class='cu-btn right' data-type='{{type}}' data-id='{{id}}' form-type='submit'>
           <text class='icon-check'></text>
         </button>
       </view>

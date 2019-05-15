@@ -35,5 +35,31 @@ page {
 }
 
 .content {
+  position: relative;
   padding: 10px;
+}
+
+.delete{
+  margin-bottom: 10rpx;
+}
+
+.position{
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+}
+
+.cu-dialog .cu-bar{
+  padding: 0;
+  min-height:80rpx;
+}
+
+.cu-dialog .action{
+  width: 100%;
+  text-align: center;
+}
+.time{
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
 }

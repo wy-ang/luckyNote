@@ -7,13 +7,29 @@
         <input type="text" placeholder="搜索便签" confirm-type="search"></input>
       </view>
     </view>
-    <view class="grid col-1 grid-square bg-red light padding-sm radius add" bindtap="toAdd">
+    <!-- <view class="grid col-1 grid-square bg-red light padding-sm radius add" bindtap="toAdd">
       <text class='icon-add'></text> 新建便签
-    </view>
+    </view> -->
     <view class="grid col-2 grid-square">
-      <view class='content bg-red light radius' wx:for="{{list}}" wx:key="index" bindtap="toAdd" data-id="{{item._id}}" data-content="{{item.content}}">
+      <view class='content bg-red light radius' wx:for="{{list}}" wx:key="index" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtap="toAdd" data-id="{{item._id}}" data-content="{{item.content}}" data-target="Modal">
         <text class='text-grey'>{{item.content}}</text>
+        <text class='text-grey time'>{{time}}</text>
       </view>
+    </view>
+  </view>
+</view>
+<view>
+  <button class='cu-btn bg-red light icon position' bindtap="toAdd">
+    <text class='icon-edit'></text>
+  </button>
+</view>
+<view class="cu-modal bottom-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white delete">
+      <view class="action text-red" bindtap="enterModal" data-id="{{id}}">删除</view>
+    </view>
+    <view class='cu-bar bg-white'>
+      <view class="action text-grey" bindtap="hideModal">取消</view>
     </view>
   </view>
 </view>

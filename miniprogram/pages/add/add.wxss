@@ -11,11 +11,12 @@
   transition: all 0.6s;
 }
 .cu-form-group {
-  background: #fadbd9;
+  background: #fef2ce;
 }
 .cu-form-group textarea{
   height: 100vh;
-  background: #fadbd9
+  background: #fef2ce;
+  color: #333;
 }
 .cu-btn {
   background: transparent !important;

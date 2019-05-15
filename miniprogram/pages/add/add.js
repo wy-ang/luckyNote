@@ -1,6 +1,5 @@
 Page({
   onLoad: function(option) {
-    console.log(option)
     //读取数据库
     const that = this;
     const content = option.content !== 'undefined' ? option.content : '';
@@ -42,6 +41,9 @@ Page({
         },
         success(res) {
           console.log(res.data)
+          wx.redirectTo({
+            url: '../index/index'
+          })
         }
       })
     } else {
@@ -58,6 +60,9 @@ Page({
           wx.showToast({
             title: '新增记录成功',
           })
+          wx.redirectTo({
+            url: '../index/index'
+          })
           console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
         },
         fail: err => {
@@ -71,10 +76,9 @@ Page({
     }
   },
 
-  toList(event) {
-    console.log(event);
-    wx.navigateTo({
-      url: '../index/index'
+  goBack(event) {
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

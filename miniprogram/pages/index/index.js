@@ -1,11 +1,11 @@
 //index.js
 const app = getApp()
 var WxParse = require('../wxParse/wxParse.js');
+var util = require('../../utils/util.js');
 
 Page({
   // 获取用户信息
   getUserInfo: function(e) {
-    console.log(e);
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -15,11 +15,13 @@ Page({
   onLoad: function() {
     //读取数据库
     const that = this;
-    const db = wx.cloud.database()
+    var time = util.formatTime(new Date());
+    const db = wx.cloud.database();
     db.collection('test').get().then(res => {
       const list = res.data;
       this.setData({
-        list: list
+        list: list,
+        time: time,
       })
       // for (let i = 0; i < list.length; i++){
       //   WxParse.wxParse('reply' + i, 'html', list[i].content, this);
@@ -126,11 +128,52 @@ Page({
     })
   },
   toAdd(event) {
-    const id = event.currentTarget.dataset.id;
-    const content = event.currentTarget.dataset.content;
+    const touchTime = this.data.touch_end - this.data.touch_start;
+    const dataset = Object.keys(event.currentTarget.dataset).length > 0 ? event.currentTarget.dataset : false;
+    const id = dataset ? event.currentTarget.dataset.id : '';
+    const modalName = dataset ? event.currentTarget.dataset.target : '';
+    const content = dataset ? event.currentTarget.dataset.content : '';
     const type = id ? 'edit' : null;
-    wx.navigateTo({
-      url: '../add/add?content=' + content + '&id=' + id + '&type=' + type
+    if (touchTime > 350) {
+      this.data.touch_start = 0;
+      this.data.touch_end = 0;
+      this.setData({
+        modalName,
+        id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../add/add?content=' + content + '&id=' + id + '&type=' + type
+      });
+    }
+  },
+  //按下事件开始  
+  touchStart: function(e) {
+    this.setData({
+      touch_start: e.timeStamp
     })
-  }
+  },
+  //按下事件结束  
+  touchEnd: function(e) {
+    this.setData({
+      touch_end: e.timeStamp
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  enterModal(e) {
+    var that = this;
+    const db = wx.cloud.database()
+    db.collection('test').doc(e.currentTarget.dataset.id).remove({
+      success(res) {
+        that.onLoad();
+      }
+    })
+    this.setData({
+      modalName: null
+    })
+  },
 })
