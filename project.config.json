@@ -6,7 +6,9 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
 	"appid": "wxe01571ef5464daa7",
 	"projectname": "react%E6%96%87%E6%A1%A3",
