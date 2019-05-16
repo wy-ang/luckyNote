@@ -12,7 +12,7 @@
     </view> -->
     <view class="grid col-2 grid-square">
       <view class='content bg-red light radius' wx:for="{{list}}" wx:key="index" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtap="toAdd" data-id="{{item._id}}" data-content="{{item.content}}" data-target="Modal">
-        <text class='text-grey'>{{item.content}}</text>
+        <text class='text-grey content-item'>{{item.content}}</text>
         <text class='text-grey time'>{{time}}</text>
       </view>
     </view>

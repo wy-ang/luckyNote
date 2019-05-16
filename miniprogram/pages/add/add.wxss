@@ -3,23 +3,51 @@
 @import "../../icon.wxss";
 
 .DrawerPage {
-  position: absolute;
+  position: relative;
   width: 100vw;
   height: 100vh;
   left: 0vw;
   background-color: #f1f1f1;
   transition: all 0.6s;
 }
+
+.solid-bottom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20rpx;
+  width: 100%;
+}
+
 .cu-form-group {
+  display: inline-block;
+  margin-top: 104rpx;
   background: #fef2ce;
 }
-.cu-form-group textarea{
-  height: 100vh;
+
+.cu-form-group textarea {
+  height: calc(100vh - 124px);
   background: #fef2ce;
   color: #333;
 }
+
 .cu-btn {
   background: transparent !important;
-  color:#e54d42;
+  color: #e54d42;
   font-size: 48rpx;
+}
+
+.tabbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.showView{
+  display: block;
+}
+
+.hideView{
+  display: none !important;
 }

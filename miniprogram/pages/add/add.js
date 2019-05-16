@@ -14,6 +14,7 @@ Page({
     }
 
     this.setData({
+      showView: true,
       content,
       type,
       id,
@@ -29,6 +30,7 @@ Page({
   },
   //操作数据库
   res: function(e) {
+    console.log(e)
     const type = e.detail.target.dataset.type;
     const id = e.detail.target.dataset.id;
     const content = e.detail.value.content;
@@ -37,10 +39,9 @@ Page({
     if (type === 'edit') {
       db.collection('test').doc(id).update({
         data: {
-          content
+          content,
         },
         success(res) {
-          console.log(res.data)
           wx.redirectTo({
             url: '../index/index'
           })
@@ -63,14 +64,12 @@ Page({
           wx.redirectTo({
             url: '../index/index'
           })
-          console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
         },
         fail: err => {
           wx.showToast({
             icon: 'none',
             title: '新增记录失败'
           })
-          console.error('[数据库] [新增记录] 失败：', err)
         }
       })
     }
@@ -79,6 +78,33 @@ Page({
   goBack(event) {
     wx.navigateBack({
       delta: 1
+    })
+  },
+  selectPic(){
+    const _this = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            user: 'test'
+          },
+          success(res) {
+            wx.showLoading({
+              title: '上传中',
+            });
+            const data = res.data
+            // do something
+          }
+        })
+      }
     })
   }
 })

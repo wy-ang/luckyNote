@@ -20,13 +20,17 @@ page {
   padding: 24rpx;
 }
 
-.cu-bar{
+.cu-bar {
   min-height: 64rpx;
   padding-bottom: 20rpx;
 }
 
 .cu-bar .search-form {
   margin: 0;
+}
+
+.grid.grid-square > view {
+  padding: 20rpx;
 }
 
 .add {
@@ -39,26 +43,42 @@ page {
   padding: 10px;
 }
 
-.delete{
+.content-item {
+  display: block;
+  height: 260rpx;
+  overflow: hidden;
+}
+
+.delete {
   margin-bottom: 10rpx;
 }
 
-.position{
+.position {
   position: absolute;
   bottom: 30rpx;
   left: 30rpx;
 }
 
-.cu-dialog .cu-bar{
+.cu-dialog .cu-bar {
   padding: 0;
-  min-height:80rpx;
+  min-height: 80rpx;
 }
 
-.cu-dialog .action{
+.cu-dialog .action {
   width: 100%;
   text-align: center;
 }
-.time{
+
+.cu-btn {
+  font-size: 36rpx;
+}
+
+.cu-btn.icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.time {
   position: absolute;
   bottom: 20rpx;
   right: 20rpx;
