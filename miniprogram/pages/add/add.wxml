@@ -1,27 +1,20 @@
 <!--add.wxml-->
 <view class="DrawerPage bg-yellow light">
   <view class='form'>
-    <form bindsubmit='res'>
-      <view class="solid-bottom">
-        <button class='cu-btn right' data-type='{{type}}' data-id='{{id}}' form-type='submit'>
-          <text class='icon-check'></text>
-        </button>
-      </view>
-      <view class="cu-form-group">
-        <textarea maxlength="-1" name="content" value="{{content}}" placeholder="请输入内容" class="{{showView?'showView':'hideView'}}"></textarea>
-        <!-- <view>
-          <text>{{content}}</text>
-        </view> -->
-      </view>
-      <view wx:for="{{tempFilePaths}}" wx:key="{{index}}">
-        <image src="{{item }}" data-index="{{index}}" style="width: 100%;"></image>
-      </view>
-    </form>
-    <view class="cu-bar tabbar bg-yellow light">
+    <view class="solid-bottom">
+      <button class='cu-btn right' data-type='{{type}}' data-id='{{id}}' bindtap='submit' form-type='submit'>
+        <text class='icon-check'></text>
+      </button>
+    </view>
+    <view class="container cu-form-group" style="height:{{editorHeight}}px;">
+      <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady">
+      </editor>
+    </view>
+    <view class="cu-bar tabbar bg-yellow light" catchtouchend="format">
       <view class="action">
         <text class='icon-squarecheckfill'></text>
       </view>
-      <view class="action" bindtap='chooseImage'>
+      <view class="action" catchtouchend="insertImage">
         <text class='icon-pic'></text>
       </view>
       <view class="action">
