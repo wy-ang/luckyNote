@@ -9,21 +9,23 @@
       </view>
       <view class="cu-form-group">
         <textarea maxlength="-1" name="content" value="{{content}}" placeholder="请输入内容" class="{{showView?'showView':'hideView'}}"></textarea>
-        <image src="{{src}}"></image>
         <!-- <view>
           <text>{{content}}</text>
         </view> -->
+      </view>
+      <view wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+        <image src="{{item }}" data-index="{{index}}" style="width: 100%;"></image>
       </view>
     </form>
     <view class="cu-bar tabbar bg-yellow light">
       <view class="action">
         <text class='icon-squarecheckfill'></text>
       </view>
-      <view class="action" bindtap='selectPic'>
+      <view class="action" bindtap='chooseImage'>
         <text class='icon-pic'></text>
       </view>
       <view class="action">
-        <text class='icon-camerafill'></text>
+        <text class='icon-camerafill' bindtap="takePhoto"></text>
       </view>
     </view>
   </view>

@@ -1,5 +1,5 @@
 {
-  "cloud":true,
+  "cloud": true,
   "pages": [
     "pages/index/index",
     "pages/add/add",
@@ -8,7 +8,10 @@
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/chooseLib/chooseLib",
+    "pages/camera/index.js",
+    "pages/camera/index",
+    "pages/camera/camera"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

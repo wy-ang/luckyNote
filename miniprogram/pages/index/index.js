@@ -17,7 +17,7 @@ Page({
     const that = this;
     var time = util.formatTime(new Date());
     const db = wx.cloud.database();
-    db.collection('test').get().then(res => {
+    db.collection('notes').get().then(res => {
       const list = res.data;
       this.setData({
         list: list,
@@ -167,7 +167,7 @@ Page({
   enterModal(e) {
     var that = this;
     const db = wx.cloud.database()
-    db.collection('test').doc(e.currentTarget.dataset.id).remove({
+    db.collection('notes').doc(e.currentTarget.dataset.id).remove({
       success(res) {
         that.onLoad();
       }

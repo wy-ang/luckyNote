@@ -26,7 +26,7 @@
 }
 
 .cu-form-group textarea {
-  height: calc(100vh - 124px);
+  width: auto;
   background: #fef2ce;
   color: #333;
 }
@@ -44,10 +44,10 @@
   left: 0;
 }
 
-.showView{
+.showView {
   display: block;
 }
 
-.hideView{
+.hideView {
   display: none !important;
 }

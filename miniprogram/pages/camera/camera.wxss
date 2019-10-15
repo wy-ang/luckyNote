@@ -1,0 +1,28 @@
+/* miniprogram/pages/camera/camera.wxss */
+@import "../wxParse/wxParse.wxss";
+@import "../../colorui.wxss";
+@import "../../icon.wxss";
+
+.camera {
+  width: 100vw;
+  height: 100vh;
+}
+
+.camera camera {
+  width: 100vw;
+  height: calc(100vh - 80px);
+}
+
+.take {
+  margin: 10px auto;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #666;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 58px;
+}
+
+.take text{
+  font-size: 30px;
+}

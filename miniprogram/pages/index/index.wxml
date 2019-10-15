@@ -7,9 +7,6 @@
         <input type="text" placeholder="搜索便签" confirm-type="search"></input>
       </view>
     </view>
-    <!-- <view class="grid col-1 grid-square bg-red light padding-sm radius add" bindtap="toAdd">
-      <text class='icon-add'></text> 新建便签
-    </view> -->
     <view class="grid col-2 grid-square">
       <view class='content bg-red light radius' wx:for="{{list}}" wx:key="index" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtap="toAdd" data-id="{{item._id}}" data-content="{{item.content}}" data-target="Modal">
         <text class='text-grey content-item'>{{item.content}}</text>
