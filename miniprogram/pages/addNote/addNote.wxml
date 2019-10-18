@@ -1,0 +1,13 @@
+<!--pages/addNote/addNote.wxml-->
+<form bindsubmit="onSubmit">
+  <textarea name="content" auto-height="true" maxlength="-1" value="{{editData.content}}"></textarea>
+  <block wx:if="{{image}}">
+    <image src="{{image}}"></image>
+  </block>
+  <view class="padding flex flex-direction">
+    <button form-type="submit" class="i-button" class="cu-btn bg-blue lg">提交</button>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class="i-button" class="cu-btn bg-green lg" bindtap="selectImage">选择图片</button>
+  </view>
+</form>

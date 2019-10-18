@@ -1,7 +1,0 @@
-<!--miniprogram/pages/camera/camera.wxml-->
-<view class='camera'>
-  <camera device-position="back" flash="off" binderror="error"></camera>
-  <view class='take' bindtap="takePhoto">
-    <text class='icon-camerafill'></text>
-  </view>
-</view>

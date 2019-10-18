@@ -1,6 +1,6 @@
-//index.js
+const db = wx.cloud.database();
+const notes = db.collection('notes');
 const app = getApp()
-var WxParse = require('../wxParse/wxParse.js');
 var util = require('../../utils/util.js');
 
 Page({
@@ -12,168 +12,71 @@ Page({
       hasUserInfo: true
     })
   },
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    list: [],
+    time: null,
+  },
+
+  /**
+   * 分页--页面上拉触底时加载新数据
+   */
+  pageData: {
+    skip: 0,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function() {
-    //读取数据库
-    const that = this;
-    var time = util.formatTime(new Date());
-    const db = wx.cloud.database();
-    db.collection('notes').get().then(res => {
-      const list = res.data;
+    this.getData();
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    this.getData();
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    this.getData(res => {
+      wx.stopPullDownRefresh();
+      //将每次加载的条数置为0,避免下拉刷新后数据展示条数错乱
+      this.pageData.skip = 0;
+    });
+  },
+
+  /**
+   * 获取数据
+   */
+  getData: function(callback) {
+    // 进行callback 函数为空判断,避免初次加载和底部加载新数据时报错
+    if (!callback) callback = res => {};
+    wx.showLoading({
+      title: '数据加载中...',
+    })
+    notes.skip(this.pageData.skip).get().then(res => {
+      // data中存储的旧数据
+      const {
+        list: oldList
+      } = this.data;
+      // 将旧数据和新数据进行合并,避免刷新后新数据覆盖旧数据
+      const list = [...oldList, ...res.data];
       this.setData({
-        list: list,
-        time: time,
+        list,
+      }, res => {
+        // 每次加载20条数据
+        this.pageData.skip = this.pageData.skip + 20;
+        wx.hideLoading();
+        callback();
       })
-      // for (let i = 0; i < list.length; i++){
-      //   WxParse.wxParse('reply' + i, 'html', list[i].content, this);
-      //   if (i === list.length - 1) {
-      //     WxParse.wxParseTemArray("listArr", 'reply', list.length, this)
-      //   }
-      // }
     })
-
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          scroll_height: res.windowHeight - res.windowWidth / 750
-        })
-      },
-    })
-  },
-
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
-
-  // 上传图片
-  doUpload: function() {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-  toAdd(event) {
-    const touchTime = this.data.touch_end - this.data.touch_start;
-    const dataset = Object.keys(event.currentTarget.dataset).length > 0 ? event.currentTarget.dataset : false;
-    const id = dataset ? event.currentTarget.dataset.id : '';
-    const modalName = dataset ? event.currentTarget.dataset.target : '';
-    const content = dataset ? event.currentTarget.dataset.content : '';
-    const type = id ? 'edit' : null;
-    if (touchTime > 350) {
-      this.data.touch_start = 0;
-      this.data.touch_end = 0;
-      this.setData({
-        modalName,
-        id,
-      })
-    } else {
-      wx.navigateTo({
-        url: '../add/add?content=' + content + '&id=' + id + '&type=' + type
-      });
-    }
-  },
-  //按下事件开始  
-  touchStart: function(e) {
-    this.setData({
-      touch_start: e.timeStamp
-    })
-  },
-  //按下事件结束  
-  touchEnd: function(e) {
-    this.setData({
-      touch_end: e.timeStamp
-    })
-  },
-  hideModal(e) {
-    this.setData({
-      modalName: null
-    })
-  },
-  enterModal(e) {
-    var that = this;
-    const db = wx.cloud.database()
-    db.collection('notes').doc(e.currentTarget.dataset.id).remove({
-      success(res) {
-        that.onLoad();
-      }
-    })
-    this.setData({
-      modalName: null
-    })
-  },
+  }
 })

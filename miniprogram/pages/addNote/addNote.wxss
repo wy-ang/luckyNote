@@ -1,0 +1,4 @@
+/* pages/addNote/addNote.wxss */
+@import "../wxParse/wxParse.wxss";
+@import "../../colorui.wxss";
+@import "../../icon.wxss";

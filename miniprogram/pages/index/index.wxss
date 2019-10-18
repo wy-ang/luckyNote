@@ -1,4 +1,3 @@
-@import "../wxParse/wxParse.wxss";
 @import "../../colorui.wxss";
 @import "../../icon.wxss";
 
@@ -80,6 +79,6 @@ page {
 
 .time {
   position: absolute;
-  bottom: 20rpx;
-  right: 20rpx;
+  bottom: -20rpx;
+  left: 20rpx;
 }

@@ -33,12 +33,27 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/add/add",
+					"pathName": "pages/add/add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/addNote/addNote",
+					"pathName": "pages/addNote/addNote",
+					"query": "id=925f44065da9d3f607e15a1d57431ae5",
+					"scene": null
 				}
 			]
 		}
