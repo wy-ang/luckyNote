@@ -1,5 +1,4 @@
 page {
-  background-color: #555;
   background-size: 100%;
 }
 
@@ -45,16 +44,22 @@ page {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
   overflow: hidden;
+  font-size: 14px;
+  line-height: 18px !important;
 }
 
 .van-card__footer {
   position: absolute;
-  left: 10px;
+  right: 10px;
   bottom: 10px;
-  text-align: left !important;
+  color: #ccc;
 }
 
-.van-card__thumb{
+.van-card__thumb {
   margin-left: 10px;
   margin-right: 0 !important;
+}
+
+.sheet button{
+  color: #ee0a24;
 }

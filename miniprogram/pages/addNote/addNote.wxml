@@ -1,4 +1,5 @@
 <!--pages/addNote/addNote.wxml-->
+<van-notify id="van-notify" />
 <form bindsubmit="onSubmit">
   <textarea name="content" auto-height="true" maxlength="-1" value="{{editData.content}}"></textarea>
   <block wx:if="{{image}}">

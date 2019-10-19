@@ -1,3 +1,4 @@
+import Notify from 'vant-weapp/notify/notify';
 const db = wx.cloud.database();
 const notes = db.collection('notes');
 const app = getApp()
@@ -18,7 +19,14 @@ Page({
    */
   data: {
     list: [],
+    id: '', //当前选中的item id
     time: null,
+    value: '',
+    show: false,
+    actions: [{
+      name: '删除',
+      color: '07c160'
+    }]
   },
 
   /**
@@ -78,5 +86,59 @@ Page({
         callback();
       })
     })
+  },
+  /**
+   * 搜索便签
+   * event.detail 为当前输入的值
+   */
+  onChange(event) {
+    const _ = db.command
+    notes.where({
+        // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
+        content: {
+          $regex: '.*' + event.detail,
+          $options: 'i'
+        }
+      })
+      .get({
+        success: res => {
+          this.setData({
+            list: res.data,
+          })
+        }
+      })
+  },
+
+  onCancel() {
+    this.setData({
+      show: false
+    });
+  },
+
+  onSelect(event) {
+    const id = this.data.id;
+    notes.doc(id).remove({
+      success: res => {
+        notes.get().then(res => {
+          this.setData({
+            list: res.data,
+            show: false
+          }, res => {
+            Notify({
+              type: 'success',
+              message: '删除成功',
+              duration: 2000,
+            });
+          })
+        })
+      }
+    })
+  },
+
+  longpress(event) {
+    this.setData({
+      show: true,
+      id: event.currentTarget.id
+    });
   }
 })

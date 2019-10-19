@@ -1,15 +1,13 @@
 <!--index.wxml-->
-<view class="DrawerPage bg-yellow light">
+<view>
+  <van-notify id="van-notify" />
   <view class="note">
-    <view class="cu-bar search">
-      <view class="search-form radius">
-        <text class="icon-search"></text>
-        <input type="text" placeholder="搜索便签" confirm-type="search"></input>
-      </view>
-    </view>
+    <van-cell-group>
+      <van-field value="{{value}}" icon="search" bind:click-icon="onSearch" placeholder="搜索便签" border="{{ false }}" bind:change="onChange" />
+    </van-cell-group>
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../addNote/addNote?id={{item._id}}">
-        <van-card title="{{item.content}}" thumb="{{item.image}}">
+        <van-card title="{{item.content}}" thumb="{{item.image}}" bindlongpress="longpress" id="{{item._id}}">
           <view slot="footer">{{item.time}}</view>
         </van-card>
       </navigator>
@@ -31,7 +29,8 @@
 <navigator url="../addNote/addNote">
   <van-icon name="add" color="yellow" size="36px" class="fixed" bind:click="toAdd" />
 </navigator>
-<view class="cu-modal bottom-modal {{modalName=='Modal'?'show':''}}">
+<van-action-sheet class="sheet" show="{{ show }}" actions="{{ actions }}" bind:cancel="onCancel" bind:select="onSelect" cancel-text="取消" />
+<!-- <view class="cu-modal bottom-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white delete">
       <view class="action text-red" bindtap="enterModal" data-id="{{id}}">删除</view>
@@ -40,4 +39,4 @@
       <view class="action text-grey" bindtap="hideModal">取消</view>
     </view>
   </view>
-</view>
+</view> -->

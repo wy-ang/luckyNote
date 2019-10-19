@@ -1,3 +1,4 @@
+import Notify from 'vant-weapp/notify/notify';
 const db = wx.cloud.database();
 const notes = db.collection('notes');
 var util = require('../../utils/util.js');
@@ -67,14 +68,24 @@ Page({
           image: this.data.image,
         }
       }).then(res => {
-        wx.showToast({
-          title: '添加成功',
-          success: res => {
+        Notify({
+          type: 'success',
+          message: '编辑成功',
+          duration: 2000,
+          onClose: (res1) => {
             wx.redirectTo({
-              url: `../index/index?id=${res.id}`,
+              url: '../index/index',
             })
           }
-        })
+        });
+        // wx.showToast({
+        //   title: '添加成功',
+        //   success: res => {
+        //     wx.redirectTo({
+        //       url: `../index/index?id=${res.id}`,
+        //     })
+        //   }
+        // })
       });
       return;
     }
@@ -85,14 +96,24 @@ Page({
         image: this.data.image,
       }
     }).then(res => {
-      wx.showToast({
-        title: '添加成功',
-        success: res => {
+      Notify({
+        type: 'success',
+        message: '添加成功',
+        duration: 1000,
+        onClose: (res1) => {
           wx.redirectTo({
-            url: `../index/index?id=${res.id}`,
+            url: '../index/index',
           })
         }
-      })
+      });
+      // wx.showToast({
+      //   title: '添加成功',
+      //   success: res => {
+      //     wx.redirectTo({
+      //       url: `../index/index?id=${res.id}`,
+      //     })
+      //   }
+      // })
     })
   },
 

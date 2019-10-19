@@ -4,7 +4,10 @@
     "van-cell": "vant-weapp/cell",
     "van-cell-group": "vant-weapp/cell-group",
     "van-sticky": "vant-weapp/sticky",
-    "van-icon": "vant-weapp/icon"
+    "van-icon": "vant-weapp/icon",
+    "van-field": "vant-weapp/field",
+    "van-notify": "vant-weapp/notify",
+    "van-action-sheet": "vant-weapp/action-sheet"
   },
   "enablePullDownRefresh": true
 }
