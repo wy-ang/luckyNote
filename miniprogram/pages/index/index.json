@@ -1,14 +1,10 @@
 {
   "usingComponents": {
-    "i-button": "../../dist/button/index",
-    "i-drawer": "../../dist/drawer/index",
-    "i-cell-group": "../../dist/cell-group/index",
-    "i-cell": "../../dist/cell/index",
-    "i-tab-bar": "../../dist/tab-bar/index",
-    "i-tab-bar-item": "../../dist/tab-bar-item/index",
-    "i-tag": "../../dist/tag/index",
-    "i-card": "../../dist/card/index",
-    "i-icon": "../../dist/icon/index"
+    "van-card": "vant-weapp/card",
+    "van-cell": "vant-weapp/cell",
+    "van-cell-group": "vant-weapp/cell-group",
+    "van-sticky": "vant-weapp/sticky",
+    "van-icon": "vant-weapp/icon"
   },
   "enablePullDownRefresh": true
 }

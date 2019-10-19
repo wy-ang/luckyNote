@@ -1,84 +1,60 @@
-@import "../../colorui.wxss";
-@import "../../icon.wxss";
-
 page {
   background-color: #555;
   background-size: 100%;
 }
 
-.DrawerPage {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 0vw;
-  background-color: #f1f1f1;
-  transition: all 0.6s;
-}
-
-.note {
-  padding: 24rpx;
-}
-
-.cu-bar {
-  min-height: 64rpx;
-  padding-bottom: 20rpx;
-}
-
-.cu-bar .search-form {
-  margin: 0;
-}
-
-.grid.grid-square > view {
-  padding: 20rpx;
-}
-
-.add {
-  margin-top: 0;
-  margin-bottom: 20rpx;
-}
-
-.content {
-  position: relative;
-  padding: 10px;
-}
-
-.content-item {
-  display: block;
-  height: 260rpx;
-  overflow: hidden;
-}
-
-.delete {
-  margin-bottom: 10rpx;
-}
-
-.position {
-  position: absolute;
+.fixed {
+  position: fixed;
   bottom: 30rpx;
   left: 30rpx;
 }
 
-.cu-dialog .cu-bar {
-  padding: 0;
-  min-height: 80rpx;
+.van-cell {
+  line-height: 24rpx !important;
 }
 
-.cu-dialog .action {
-  width: 100%;
-  text-align: center;
+.img {
+  width: 100rpx;
+  height: 100rpx;
 }
 
-.cu-btn {
-  font-size: 36rpx;
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.cu-btn.icon {
-  width: 80rpx;
-  height: 80rpx;
+.van-cell-text {
+  width: 500rpx;
+  line-height: 30rpx;
 }
 
-.time {
+.van-card {
+  height: 131px;
+  padding: 12px !important;
+  background-color: #fff !important;
+  border-bottom: 1px solid #ebedf0;
+}
+
+.van-card__header {
+  flex-direction: row-reverse;
+}
+
+.van-card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.van-card__footer {
   position: absolute;
-  bottom: -20rpx;
-  left: 20rpx;
+  left: 10px;
+  bottom: 10px;
+  text-align: left !important;
+}
+
+.van-card__thumb{
+  margin-left: 10px;
+  margin-right: 0 !important;
 }

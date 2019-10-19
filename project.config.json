@@ -7,11 +7,21 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
-		"uglifyFileName": true
+		"coverView": true,
+		"autoAudits": true,
+		"uglifyFileName": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"nodeModules": true
 	},
 	"appid": "wxe01571ef5464daa7",
-	"projectname": "react%E6%96%87%E6%A1%A3",
+	"projectname": "lucky%E4%BE%BF%E7%AD%BE",
 	"libVersion": "2.8.3",
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",

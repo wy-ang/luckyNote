@@ -9,28 +9,27 @@
     </view>
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../addNote/addNote?id={{item._id}}">
-        <view class="cu-item">
-          <block wx:if="{{item.image}}">
-            <image src="{{item.image}}" class="cu-avatar lg"></image>
-          </block>
-          <view class="content">
-            <view class="text-gray text-sm flex">
-              <text class="text-cut">
-							<text class="cuIcon-infofill text-red  margin-right-xs"></text>
-              <text>{{item.content}}</text>
-              </text>
-              <text class="text-grey text-xs time">{{item.time}}</text>
-            </view>
-          </view>
-        </view>
+        <van-card title="{{item.content}}" thumb="{{item.image}}">
+          <view slot="footer">{{item.time}}</view>
+        </van-card>
       </navigator>
     </block>
+    <!-- <block wx:for="{{list}}" wx:key="key">
+      <navigator class="cu-list menu-avatar" url="../addNote/addNote?id={{item._id}}">
+        <van-cell label="{{item.time}}">
+          <view slot="title">
+            <view class="van-cell-text text-cut">{{item.content}}</view>
+          </view>
+          <van-icon slot="right-icon" class="img-wrap">
+            <image src="{{item.image}}" class="img"></image>
+          </van-icon>
+        </van-cell>
+      </navigator>
+    </block> -->
   </view>
 </view>
 <navigator url="../addNote/addNote">
-  <button class='cu-btn bg-red light icon position' bindtap="toAdd">
-    <text class='icon-edit'></text>
-  </button>
+  <van-icon name="add" color="yellow" size="36px" class="fixed" bind:click="toAdd" />
 </navigator>
 <view class="cu-modal bottom-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
