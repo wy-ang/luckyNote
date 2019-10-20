@@ -5,10 +5,13 @@
   <block wx:if="{{image}}">
     <image src="{{image}}"></image>
   </block>
-  <view class="padding flex flex-direction">
-    <button form-type="submit" class="i-button" class="cu-btn bg-blue lg">提交</button>
-  </view>
-  <view class="padding flex flex-direction">
-    <button class="i-button" class="cu-btn bg-green lg" bindtap="selectImage">选择图片</button>
-  </view>
+  <van-nav-bar left-text="{{editData.time}}" fixed="true" safe-area-inset-top="false">
+    <button form-type="submit" slot="right" class="cu-btn bg-blue lg">完成</button>
+  </van-nav-bar>
+  <van-tabbar bind:change="onChange">
+    <van-tabbar-item icon="photo-o" bindtap="selectImage"></van-tabbar-item>
+    <van-tabbar-item></van-tabbar-item>
+    <van-tabbar-item></van-tabbar-item>
+    <van-tabbar-item></van-tabbar-item>
+  </van-tabbar>
 </form>

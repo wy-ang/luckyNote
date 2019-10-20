@@ -1,4 +1,29 @@
 /* pages/addNote/addNote.wxss */
-@import "../wxParse/wxParse.wxss";
-@import "../../colorui.wxss";
-@import "../../icon.wxss";
+
+page {
+  padding-top: 44px;
+}
+
+textarea {
+  padding: 12px;
+}
+
+.van-tabbar {
+  background-color: transparent !important;
+}
+
+.van-hairline--top-bottom:after {
+  border: 0 !important;
+}
+
+button, button:after, .button-hover {
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: inherit;
+}
+
+.van-nav-bar {
+  padding: 0 !important;
+}

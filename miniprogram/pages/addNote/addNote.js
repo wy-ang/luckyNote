@@ -9,7 +9,7 @@ Page({
   data: {
     editData: {},
     image: null,
-    id: null
+    id: null,
   },
 
   /**

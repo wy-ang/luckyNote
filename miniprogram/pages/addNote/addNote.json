@@ -6,6 +6,9 @@
     "van-sticky": "vant-weapp/sticky",
     "van-icon": "vant-weapp/icon",
     "van-field": "vant-weapp/field",
-    "van-notify": "vant-weapp/notify"
+    "van-notify": "vant-weapp/notify",
+    "van-tabbar": "vant-weapp/tabbar",
+    "van-tabbar-item": "vant-weapp/tabbar-item",
+    "van-nav-bar": "vant-weapp/nav-bar"
   }
 }
