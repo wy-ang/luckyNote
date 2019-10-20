@@ -6,37 +6,15 @@
       <van-field value="{{value}}" icon="search" bind:click-icon="onSearch" placeholder="搜索便签" border="{{ false }}" bind:change="onChange" />
     </van-cell-group>
     <block wx:for="{{list}}" wx:key="key">
-      <navigator class="cu-list menu-avatar" url="../addNote/addNote?id={{item._id}}">
-        <van-card title="{{item.content}}" thumb="{{item.image}}" bindlongpress="longpress" id="{{item._id}}">
+      <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
+        <van-card title="{{item.content}}" thumb="{{item.image}}" bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
           <view slot="footer">{{item.time}}</view>
         </van-card>
       </navigator>
     </block>
-    <!-- <block wx:for="{{list}}" wx:key="key">
-      <navigator class="cu-list menu-avatar" url="../addNote/addNote?id={{item._id}}">
-        <van-cell label="{{item.time}}">
-          <view slot="title">
-            <view class="van-cell-text text-cut">{{item.content}}</view>
-          </view>
-          <van-icon slot="right-icon" class="img-wrap">
-            <image src="{{item.image}}" class="img"></image>
-          </van-icon>
-        </van-cell>
-      </navigator>
-    </block> -->
   </view>
 </view>
-<navigator url="../addNote/addNote">
+<navigator url="../editor/editor">
   <van-icon name="add" color="yellow" size="36px" class="fixed" bind:click="toAdd" />
 </navigator>
 <van-action-sheet class="sheet" show="{{ show }}" actions="{{ actions }}" bind:cancel="onCancel" bind:select="onSelect" cancel-text="取消" />
-<!-- <view class="cu-modal bottom-modal {{modalName=='Modal'?'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white delete">
-      <view class="action text-red" bindtap="enterModal" data-id="{{id}}">删除</view>
-    </view>
-    <view class='cu-bar bg-white'>
-      <view class="action text-grey" bindtap="hideModal">取消</view>
-    </view>
-  </view>
-</view> -->

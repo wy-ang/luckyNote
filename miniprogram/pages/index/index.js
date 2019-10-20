@@ -20,6 +20,7 @@ Page({
   data: {
     list: [],
     id: '', //当前选中的item id
+    itemIndex: '',
     time: null,
     value: '',
     show: false,
@@ -44,6 +45,15 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    this.setData({
+      id: ''
+    })
+  },
+
+  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
@@ -57,8 +67,18 @@ Page({
     this.getData(res => {
       wx.stopPullDownRefresh();
       //将每次加载的条数置为0,避免下拉刷新后数据展示条数错乱
-      this.pageData.skip = 0;
+      // this.pageData.skip = 0;
     });
+  },
+
+  /**
+   * 给editor页面传递当前被点击项的索引及id
+   */
+  setIndex: function(e) {
+    this.setData({
+      id: e.currentTarget.id,
+      itemIndex: e.currentTarget.dataset.index
+    })
   },
 
   /**
@@ -72,13 +92,10 @@ Page({
     })
     notes.skip(this.pageData.skip).get().then(res => {
       // data中存储的旧数据
-      const {
-        list: oldList
-      } = this.data;
+      const oldList = this.data.list;
       // 将旧数据和新数据进行合并,避免刷新后新数据覆盖旧数据
-      const list = [...oldList, ...res.data];
       this.setData({
-        list,
+        list: oldList.concat(res.data),
       }, res => {
         // 每次加载20条数据
         this.pageData.skip = this.pageData.skip + 20;

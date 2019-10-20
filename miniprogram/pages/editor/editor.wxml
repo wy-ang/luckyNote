@@ -1,0 +1,11 @@
+<!--pages/editor/editor.wxml-->
+<van-notify id="van-notify" />
+<view class="container">
+  <editor id="editor" class="ql-container" show-img-resize="true" show-img-toolbar="true" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady">
+  </editor>
+</view>
+<van-tabbar catchtouchend="format">
+  <van-tabbar-item icon="photo-o" catchtouchend="insertImage"></van-tabbar-item>
+  <van-tabbar-item icon="certificate" data-name="list" data-value="check"></van-tabbar-item>
+  <van-tabbar-item icon="success" bindtap="onSave"></van-tabbar-item>
+</van-tabbar>

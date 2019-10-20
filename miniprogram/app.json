@@ -2,7 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
-    "pages/addNote/addNote",
+    "pages/editor/editor",
     "pages/userConsole/userConsole"
   ],
   "window": {
