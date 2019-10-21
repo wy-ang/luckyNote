@@ -7,7 +7,7 @@ Page({
     id: {},
     formats: {},
     readOnly: false,
-    placeholder: '|',
+    placeholder: '在这里输入便签啦^_^',
     keyboardHeight: 0,
   },
   readOnlyChange() {

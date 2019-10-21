@@ -14,5 +14,11 @@
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "htmltowxml": {
+      "version": "1.4.0",
+      "provider": "wxa51b9c855ae38f3c"
+    }
+  }
 }

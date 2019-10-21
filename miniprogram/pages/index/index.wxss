@@ -65,3 +65,18 @@ page {
 .sheet button {
   color: #ee0a24;
 }
+
+.html2wxml--html2wxml {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.html2wxml--wxml-img {
+  max-width: 90px !important;
+  max-height: 90px;
+}
+
+.html2wxml--wxml-p:last-child {
+  flex: 1;
+}
+

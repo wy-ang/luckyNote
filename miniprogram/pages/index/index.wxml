@@ -7,7 +7,10 @@
     </van-cell-group>
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
-        <van-card title="{{item.content}}" thumb="{{item.image}}" bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
+        <van-card bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
+          <view slot="title">
+            <htmltowxml text="{{item.content}}" showLoading="{{false}}" />
+          </view>
           <view slot="footer">{{item.time}}</view>
         </van-card>
       </navigator>
@@ -15,6 +18,6 @@
   </view>
 </view>
 <navigator url="../editor/editor">
-  <van-icon name="add" color="yellow" size="36px" class="fixed" bind:click="toAdd" />
+  <van-icon name="add" color="#adadad" size="36px" class="fixed" bind:click="toAdd" />
 </navigator>
 <van-action-sheet class="sheet" show="{{ show }}" actions="{{ actions }}" bind:cancel="onCancel" bind:select="onSelect" cancel-text="取消" />
