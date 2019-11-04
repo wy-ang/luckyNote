@@ -1,7 +1,7 @@
 import Notify from 'vant-weapp/notify/notify';
 const db = wx.cloud.database();
 const notes = db.collection('notes');
-const app = getApp()
+const app = getApp();
 var util = require('../../utils/util.js');
 
 Page({

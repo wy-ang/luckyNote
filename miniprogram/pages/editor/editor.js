@@ -9,6 +9,7 @@ Page({
     readOnly: false,
     placeholder: '在这里输入便签啦^_^',
     keyboardHeight: 0,
+    image: null,
   },
   readOnlyChange() {
     this.setData({
@@ -25,15 +26,18 @@ Page({
     const propsData = pages[pages.length - 2].data;
     wx.createSelectorQuery().select('#editor').context(function(res) {
       that.editorCtx = res.context
+      // 有ID为编辑，然后进行塞值
       if (propsData.id != '') {
-        that.editorCtx.setContents({
-          html: propsData.list[propsData.itemIndex].content,
-          success: (res) => {
-            console.log(res.errMsg)
-          },
-          fail: (res) => {
-            console.log(res.errMsg)
-          }
+        notes.get().then(res => {
+          that.editorCtx.setContents({
+            html: res.data[propsData.itemIndex].content,
+            success: (res) => {
+              console.log(res.errMsg)
+            },
+            fail: (res) => {
+              console.log(res.errMsg)
+            }
+          })
         })
       }
     }).exec()
@@ -71,17 +75,23 @@ Page({
     wx.chooseImage({
       count: 1,
       success: res => {
-        that.editorCtx.insertImage({
-          src: res.tempFilePaths[0],
-          data: {
-            id: 'abcd',
-            role: 'god'
+        wx.cloud.uploadFile({
+          cloudPath: `${Math.floor(Math.random() * 1000000000)}.png`, // 上传至云端的路径
+          filePath: res.tempFilePaths[0], // 小程序临时文件路径
+          success: res => {
+            console.log(res.fileID)
+            // 返回文件 ID
+            that.editorCtx.insertImage({
+              src: res.fileID,
+              width: '100%',
+              success: function() {
+                console.log('insert image success')
+              }
+            });
           },
-          width: '80%',
-          success: function() {
-            console.log('insert image success')
-          }
-        });
+          fail: console.error
+        })
+
       }
     })
   },
