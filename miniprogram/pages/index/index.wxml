@@ -9,9 +9,9 @@
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
         <van-card bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
           <view slot="title">
-            <htmltowxml text="{{item.content}}" showLoading="{{false}}" />
+            <Parser html="{{item.content}}" />
           </view>
-          <view slot="footer">{{item.time}}</view>
+          <view class="time" slot="footer">{{item.time}}</view>
         </van-card>
       </navigator>
     </block>

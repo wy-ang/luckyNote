@@ -8,7 +8,7 @@
     "van-field": "vant-weapp/field",
     "van-notify": "vant-weapp/notify",
     "van-action-sheet": "vant-weapp/action-sheet",
-    "htmltowxml": "plugin://htmltowxml/view"
+    "Parser": "/Parser.min/index"
   },
   "enablePullDownRefresh": true
 }

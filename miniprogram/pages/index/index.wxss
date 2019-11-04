@@ -30,47 +30,19 @@ page {
 }
 
 .van-card {
-  height: 131px;
+  height: 140px;
   padding: 12px !important;
   background-color: #fff !important;
   border-bottom: 1px solid #ebedf0;
-}
-
-.van-card__header {
-  flex-direction: row-reverse;
-}
-
-.van-card__title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  overflow: hidden;
-  font-size: 14px;
-  font-weight: normal !important;
-  line-height: 18px !important;
 }
 
 .van-card__footer {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  color: #ccc;
-}
-
-.van-card__thumb {
-  margin-left: 10px;
-  margin-right: 0 !important;
+  color: #999;
 }
 
 .sheet button {
   color: #ee0a24;
-}
-
-.html2wxml--html2wxml {
-  display: flex;
-}
-
-.html2wxml--wxml-img {
-  max-width: 90px !important;
-  max-height: 90px;
 }
