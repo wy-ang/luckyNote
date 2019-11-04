@@ -82,12 +82,12 @@
 }
 
 #contain {
-  height: 98px;
-  display: block;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  max-height: 98px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .img {
@@ -100,6 +100,10 @@
 
 rich-text.p, text {
   font-size: 14px;
-  display: inline-block;
   padding-right: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
