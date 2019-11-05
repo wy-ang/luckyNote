@@ -53,3 +53,7 @@ text {
   color: #999;
   border-bottom: 1px solid #ccc;
 }
+
+.sheet button {
+  color: #ee0a24;
+}

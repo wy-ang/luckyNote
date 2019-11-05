@@ -8,7 +8,7 @@
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
         <view data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
-          <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key" class="content">
+          <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key" bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex" class="content">
             <block wx:if="{{ops.title.length>2}}">
               <text>{{ops.title}}</text>
             </block>
