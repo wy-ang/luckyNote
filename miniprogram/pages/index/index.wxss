@@ -9,31 +9,17 @@ page {
   left: 30rpx;
 }
 
-.van-cell {
-  line-height: 24rpx !important;
-}
-
-.img {
-  width: 100rpx;
-  height: 100rpx;
-}
-
-.text-cut {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.van-cell-text {
-  width: 500rpx;
-  line-height: 30rpx;
-}
-
 .van-card {
   height: 140px;
   padding: 12px !important;
   background-color: #fff !important;
   border-bottom: 1px solid #ebedf0;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .van-card__footer {

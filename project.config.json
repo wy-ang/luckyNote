@@ -21,7 +21,7 @@
 		"nodeModules": true
 	},
 	"appid": "wxe01571ef5464daa7",
-	"projectname": "lucky%E4%BE%BF%E7%AD%BE",
+	"projectname": "luckyNote",
 	"libVersion": "2.9.0",
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
