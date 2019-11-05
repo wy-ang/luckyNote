@@ -29,13 +29,13 @@ page {
   align-items: center;
 }
 
-image {
+.content image {
   flex: 1;
   max-width: 90px !important;
   max-height: 90px !important;
 }
 
-text {
+.content text {
   flex: 1;
   font-size: 14px;
   color: #333;

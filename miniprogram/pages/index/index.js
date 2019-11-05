@@ -141,6 +141,9 @@ Page({
             list: res.data,
             show: false
           }, res => {
+            this.setData({
+              id: ''
+            })
             Notify({
               type: 'success',
               message: '删除成功',
