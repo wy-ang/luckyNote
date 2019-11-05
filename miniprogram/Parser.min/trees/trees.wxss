@@ -80,36 +80,3 @@
   top: 50%;
   margin: -15px 0 0 -15px;
 }
-
-#contain {
-  max-height: 98px;
-  display: -webkit-box;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.img {
-  position: absolute;
-  right: 0;
-  top: 0;
-  max-width: 90px !important;
-  max-height: 90px !important;
-}
-
-rich-text.p, text {
-  font-size: 14px;
-  display: -webkit-box !important;
-  word-break: break-all !important;
-  text-overflow: ellipsis !important;
-  -webkit-line-clamp: 3 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-}
-
-.ul {
-  margin-left: -20px;
-  padding: 0;
-}

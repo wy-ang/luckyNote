@@ -8,9 +8,16 @@
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
         <view data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
-          <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key">
+          <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key" class="content">
+            <block wx:if="{{ops.title.length>2}}">
               <text>{{ops.title}}</text>
+            </block>
+            <block wx:else>
+              <text>[图片]</text>
+            </block>
+            <block wx:if="{{ops.image}}">
               <image src='{{ops.image}}'></image>
+            </block>
           </view>
         </view>
         <view class="time">{{item.time}}</view>
