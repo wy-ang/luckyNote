@@ -101,7 +101,7 @@
 
 rich-text.p, text {
   font-size: 14px;
-  margin-right: 100px;
+  padding-right: 100px;
   display: -webkit-box !important;
   word-break: break-all !important;
   text-overflow: ellipsis !important;
