@@ -7,7 +7,7 @@ Page({
     id: {},
     formats: {},
     readOnly: false,
-    placeholder: '在这里输入便签啦^_^',
+    placeholder: '',
     keyboardHeight: 0,
     image: null,
   },
@@ -101,9 +101,24 @@ Page({
     } = this.data;
     this.editorCtx.getContents({
       success: res => {
+        const ops = res.delta.ops;
+        const deltas = [];
+        const obj = {};
+        let str = '';
+        for (let i = 0; i < ops.length; i++) {
+          if (typeof(ops[i].insert) == 'string') {
+            str += ops[i].insert
+          }
+          if (typeof(ops[i].insert) == 'object') {
+            obj.image = ops[i].insert.image
+          }
+          obj.title = str;
+          deltas.push(obj);
+        }
         if (id) {
           notes.doc(id).update({
             data: {
+              delta: Array.from(new Set(deltas)),
               content: res.html,
               time: util.formatTime(new Date()),
             }
@@ -123,6 +138,7 @@ Page({
         }
         notes.add({
           data: {
+            delta: Array.from(new Set(deltas)),
             content: res.html,
             time: util.formatTime(new Date()),
           }

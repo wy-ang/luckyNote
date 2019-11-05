@@ -92,6 +92,7 @@ Page({
     })
     notes.skip(this.pageData.skip).get().then(res => {
       // data中存储的旧数据
+      console.log(res)
       const oldList = this.data.list;
       // 将旧数据和新数据进行合并,避免刷新后新数据覆盖旧数据
       this.setData({

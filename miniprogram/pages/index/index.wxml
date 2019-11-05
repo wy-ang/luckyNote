@@ -7,12 +7,19 @@
     </van-cell-group>
     <block wx:for="{{list}}" wx:key="key">
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
-        <van-card bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
+        <view data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
+          <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key">
+              <text>{{ops.title}}</text>
+              <image src='{{ops.image}}'></image>
+          </view>
+        </view>
+        <view class="time">{{item.time}}</view>
+        <!-- <van-card bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
           <view slot="title">
             <Parser html="{{item.content}}" />
           </view>
           <view class="time" slot="footer">{{item.time}}</view>
-        </van-card>
+        </van-card> -->
       </navigator>
     </block>
   </view>
