@@ -1,3 +1,9 @@
+.fixed {
+  position: fixed;
+  bottom: 30rpx;
+  left: 30rpx;
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -42,4 +48,8 @@
   border: 1px solid #ececec;
   border-left: none;
   border-right: none;
+}
+
+.van-hairline--top-bottom:after {
+  border: 0 !important;
 }

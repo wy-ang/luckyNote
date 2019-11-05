@@ -7,8 +7,7 @@
     "van-icon": "vant-weapp/icon",
     "van-field": "vant-weapp/field",
     "van-notify": "vant-weapp/notify",
-    "van-action-sheet": "vant-weapp/action-sheet",
-    "Parser": "/Parser.min/index"
+    "van-action-sheet": "vant-weapp/action-sheet"
   },
   "enablePullDownRefresh": true
 }

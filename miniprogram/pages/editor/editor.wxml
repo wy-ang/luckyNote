@@ -8,4 +8,5 @@
   <van-tabbar-item icon="photo-o" catchtouchend="insertImage"></van-tabbar-item>
   <van-tabbar-item icon="certificate" data-name="list" data-value="check"></van-tabbar-item>
   <van-tabbar-item icon="success" bindtap="onSave"></van-tabbar-item>
+  <!-- <van-icon name="checked" color="#fd8d8d" size="40px" class="fixed" bindtap="onSave" /> -->
 </van-tabbar>

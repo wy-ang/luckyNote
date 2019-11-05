@@ -9,7 +9,10 @@
       <navigator class="cu-list menu-avatar" url="../editor/editor?id={{item._id}}">
         <view data-index="{{index}}" id="{{item._id}}" bindtap="setIndex">
           <view wx:for="{{item.delta}}" wx:for-index="idx" wx:for-item="ops" wx:key="key" bindlongpress="longpress" data-index="{{index}}" id="{{item._id}}" bindtap="setIndex" class="content">
-            <block wx:if="{{ops.title.length>2}}">
+            <block wx:if="{{!ops.title&&!ops.image}}">
+              <text></text>
+            </block>
+            <block wx:elif="{{ops.title}}">
               <text>{{ops.title}}</text>
             </block>
             <block wx:else>
@@ -32,6 +35,6 @@
   </view>
 </view>
 <navigator url="../editor/editor">
-  <van-icon name="add" color="#adadad" size="36px" class="fixed" bind:click="toAdd" />
+  <van-icon name="add" color="#fd8d8d" size="40px" class="fixed" bind:click="toAdd" />
 </navigator>
 <van-action-sheet class="sheet" show="{{ show }}" actions="{{ actions }}" bind:cancel="onCancel" bind:select="onSelect" cancel-text="取消" />

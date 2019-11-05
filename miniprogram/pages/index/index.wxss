@@ -1,6 +1,6 @@
 page {
   background-size: 100%;
-  background: #ebedf0;
+  background: #fff;
 }
 
 .fixed {
@@ -37,12 +37,14 @@ page {
 
 .content text {
   flex: 1;
+  padding-right: 10px;
   font-size: 14px;
   color: #333;
+  min-height: 60px;
   display: -webkit-box !important;
   word-break: break-all !important;
   text-overflow: ellipsis !important;
-  -webkit-line-clamp: 5 !important;
+  -webkit-line-clamp: 3 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
 }
@@ -56,4 +58,9 @@ page {
 
 .sheet button {
   color: #ee0a24;
+}
+
+.van-icon-add {
+  background: #fff;
+  border-radius: 100%;
 }

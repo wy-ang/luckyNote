@@ -79,7 +79,6 @@ Page({
           cloudPath: `${Math.floor(Math.random() * 1000000000)}.png`, // 上传至云端的路径
           filePath: res.tempFilePaths[0], // 小程序临时文件路径
           success: res => {
-            console.log(res.fileID)
             // 返回文件 ID
             that.editorCtx.insertImage({
               src: res.fileID,
@@ -101,18 +100,28 @@ Page({
     } = this.data;
     this.editorCtx.getContents({
       success: res => {
+        // 解析html
         const ops = res.delta.ops;
         const deltas = [];
         const obj = {};
         let str = '';
         for (let i = 0; i < ops.length; i++) {
-          if (typeof(ops[i].insert) == 'string') {
-            str += ops[i].insert
+          const insert = ops[i].insert;
+          const attributes = ops[i].attributes;
+          if (typeof(insert) == 'string') {
+            if (attributes) { // 是否是checkbox
+              if (attributes.hasOwnProperty('list')) {
+                str += insert;
+              }
+            }
+            str += insert.replace(/\r|\n|\s|\r\n|\r\s|\n\s*/g, '') //替换空白符和换行符
           }
-          if (typeof(ops[i].insert) == 'object') {
-            obj.image = ops[i].insert.image
+          if (typeof(insert) == 'object') {
+            obj.image = insert.image;
           }
-          obj.title = str;
+          if (str != '') {
+            obj.title = str;
+          }
           deltas.push(obj);
         }
         if (id) {
